@@ -220,6 +220,7 @@ int main()
 	int diz=conta();
 	char **dizionario=(malloc(sizeof(char*)*diz));
 	int *flag=malloc(sizeof(int)*diz);
+	puts("bho");
 	carica(dizionario,flag);
 	lista->parola=inizio;
 	lista->prev=NULL;

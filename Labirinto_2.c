@@ -74,26 +74,6 @@ void print(struct nodo *lista)
     printf ("\n");
 }
 
-int amici(char **dizionario, char *parola, int *flag, int diz, char* fine)
-{
-	int disfine=0;
-	int dis=100;
-	int i=0,ris=-1;
-	for(i=diz-1;i>=0;i--)
-	{
-		if((strcmp(parola,dizionario[i])!=0)&&(verifica(parola,dizionario[i]))&&!flag[i])
-		{
-			disfine=distanza(dizionario[i],fine);
-			if(disfine<dis)
-			{
-				ris=i;
-				dis=disfine;
-			}
-		}
-	}
-	return ris;
-}
-
 ////////////////////FUNZIONI DI CONTROLLO DELLA COMPATIBILITA' TRA PAROLE////////////////////////
 
 int anagr(char *a, char *b)/*prende in ingresso due stringhe e dice se una è anagramma dell'altra*/
@@ -196,6 +176,29 @@ void carica(char **dizionario, int *flag)//carica le parole dal file dizionario.
 		i++;
 	}
 	fclose(f);
+}
+//amici ritorna l'indice della parola compatibile con l'ultima parola aggiunta, che ha minore
+//distanza dalla parola finale. L'array flag viene utilizzato per far si che quando il
+//programma non trova soluzioni torna indietro di una parola, eviti di ripercorrere lo stesso
+//percorso.
+int amici(char **dizionario, char *parola, int *flag, int diz, char* fine)
+{
+	int disfine=0;
+	int dis=100;
+	int i=0,ris=-1;
+	for(i=diz-1;i>=0;i--)
+	{
+		if((strcmp(parola,dizionario[i])!=0)&&(verifica(parola,dizionario[i]))&&!flag[i])
+		{
+			disfine=distanza(dizionario[i],fine);
+			if(disfine<dis)
+			{
+				ris=i;
+				dis=disfine;
+			}
+		}
+	}
+	return ris;
 }
 
 int soluzione(char *fine, char **dizionario, int diz, int *flag, struct nodo *lista)

@@ -161,9 +161,9 @@ int verifica(char *a, char *b) /*verifica che almeno una delle regole necessarie
 int conta()//carica le parole dal file dizionario.txt in un array
 {
 	char *buffer;
-	buffer=malloc(sizeof(char)*50);
 	int i=0;
 	FILE *f;
+	buffer=malloc(sizeof(char)*50);
 	f=fopen("dizionario.txt","r");
 	while(!feof(f))
 	{
@@ -178,9 +178,9 @@ int conta()//carica le parole dal file dizionario.txt in un array
 void carica(char **dizionario, int *flag)//carica le parole dal file dizionario.txt in un array
 {
 	char *buffer;
-	buffer=(malloc(sizeof(char)*50));
 	int i=0;
 	FILE *f;
+	buffer=malloc(sizeof(char)*50);
 	f=fopen("dizionario.txt","r");
 	while(!feof(f))
 	{

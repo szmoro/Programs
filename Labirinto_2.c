@@ -76,13 +76,19 @@ void print(struct nodo *lista)
 
 int amici(char **dizionario, char *parola, int *flag, int diz, char* fine)
 {
+	int disfine=0;
 	int dis=100;
 	int i=0,ris=-1;
 	for(i=diz-1;i>=0;i--)
 	{
 		if((strcmp(parola,dizionario[i])!=0)&&(verifica(parola,dizionario[i]))&&!flag[i])
 		{
-			if(distanza(dizionario[i],fine)<dis)	ris=i;
+			disfine=distanza(dizionario[i],fine);
+			if(disfine<dis)
+			{
+				ris=i;
+				dis=disfine;
+			}
 		}
 	}
 	return ris;
@@ -214,13 +220,12 @@ int soluzione(char *fine, char **dizionario, int diz, int *flag, struct nodo *li
 
 int main()
 {
-	char *inizio={"cane"};
-	char *fine={"casa"};
+	char *inizio={"porta"};
+	char *fine={"asta"};
 	struct nodo *lista;
 	int diz=conta();
 	char **dizionario=(malloc(sizeof(char*)*diz));
 	int *flag=malloc(sizeof(int)*diz);
-	puts("bho");
 	carica(dizionario,flag);
 	lista->parola=inizio;
 	lista->prev=NULL;

@@ -210,21 +210,26 @@ int soluzione(char *fine, char **dizionario, int diz, int *flag, struct nodo *li
 	{
 		i=amici(dizionario,lista->parola,flag,diz,fine);
 		while(i<0)
-		{
-			i=amici(dizionario,(lista->prev)->parola,flag,diz,fine);
+		{	
+			if(lista->prev==NULL)
+			{
+				return 0;
+			}
+			lista=lista->prev;
+			i=amici(dizionario,lista->parola,flag,diz,fine);
 		}
 		flag[i]=1;
+		lista->next=NULL;
 		append_am(lista,dizionario[i]);
-		lista=lista->next;	
-		print(testa);
+		lista=lista->next;		
 	}
 	return 1;
 }
 
 int main()
 {
-	char *inizio={"porta"};
-	char *fine={"asta"};
+	char *inizio=malloc(sizeof(char)*50);
+	char *fine=malloc(sizeof(char)*50);
 	struct nodo *lista;
 	int diz=conta();
 	char **dizionario=(malloc(sizeof(char*)*diz));
@@ -233,7 +238,17 @@ int main()
 	lista->parola=inizio;
 	lista->prev=NULL;
 	lista->next=NULL;
-	soluzione(fine,dizionario,diz,flag,lista);
-	append_am(lista,fine);	
-	print(lista);
+	puts("BENVENUTO! INSERISCI LA PAROLA DI INIZIO! (MASSIMO 50 CARATTERI)\n");
+	scanf("%s",inizio);
+	puts("\n");
+	puts("INSERISCI ORA LA PAROLA DI FINE\n");
+	scanf("%s",fine);
+	puts("\n");
+	puts("sto elaborando...\n");
+	if(soluzione(fine,dizionario,diz,flag,lista)==0)	puts("non c'è soluzione\n");
+	else
+	{
+		append_am(lista,fine);	
+		print(lista);
+	}
 }

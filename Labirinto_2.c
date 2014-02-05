@@ -256,7 +256,12 @@ int main()
 		scanf("%s",fine);
 		puts("\n");
 		puts("sto elaborando...\n");
-		if(soluzione(fine,dizionario,diz,flag,lista)==0)	puts("non c'e' soluzione\n");
+		if(soluzione(fine,dizionario,diz,flag,lista)==0)
+		{
+			puts("non c'e' soluzione\n");		
+			puts("Digita 1 e premi invio per uscire, 0 per continuare\n");
+			scanf("%i",&esci);
+		}
 		else
 		{
 			append_am(lista,fine);	

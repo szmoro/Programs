@@ -226,6 +226,12 @@ int soluzione(char *fine, char **dizionario, int diz, int *flag, struct nodo *li
 	return 1;
 }
 
+void cls()
+{
+	int i=0;
+	for(i=0;i<5;i++)	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+}
+
 int main()
 {
 	char *inizio=malloc(sizeof(char)*50);
@@ -234,21 +240,29 @@ int main()
 	int diz=conta();
 	char **dizionario=(malloc(sizeof(char*)*diz));
 	int *flag=malloc(sizeof(int)*diz);
+	int esci=0;
 	carica(dizionario,flag);
 	lista->parola=inizio;
 	lista->prev=NULL;
 	lista->next=NULL;
-	puts("BENVENUTO! INSERISCI LA PAROLA DI INIZIO! (MASSIMO 50 CARATTERI)\n");
-	scanf("%s",inizio);
-	puts("\n");
-	puts("INSERISCI ORA LA PAROLA DI FINE\n");
-	scanf("%s",fine);
-	puts("\n");
-	puts("sto elaborando...\n");
-	if(soluzione(fine,dizionario,diz,flag,lista)==0)	puts("non c'è soluzione\n");
-	else
+	puts("BENVENUTO!");
+	while(esci!=1)
 	{
-		append_am(lista,fine);	
-		print(lista);
+		cls();
+		puts("INSERISCI LA PAROLA DI INIZIO! (MASSIMO 50 CARATTERI)\n");
+		scanf("%s",inizio);
+		puts("\n");
+		puts("INSERISCI ORA LA PAROLA DI FINE\n");
+		scanf("%s",fine);
+		puts("\n");
+		puts("sto elaborando...\n");
+		if(soluzione(fine,dizionario,diz,flag,lista)==0)	puts("non c'e' soluzione\n");
+		else
+		{
+			append_am(lista,fine);	
+			print(lista);
+			puts("\nDigita 1 e premi invio per uscire, 0 per continuare\n");
+			scanf("%i",&esci);
+		}
 	}
 }

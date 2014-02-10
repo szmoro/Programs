@@ -179,7 +179,7 @@ void carica(char **dizionario, int *flag)//carica le parole dal file dizionario.
 }
 //amici ritorna l'indice della parola compatibile con l'ultima parola aggiunta, che ha minore
 //distanza dalla parola finale. L'array flag viene utilizzato per far si che quando il
-//programma non trova soluzioni torna indietro di una parola, eviti di ripercorrere lo stesso
+//programma non trova soluzioni torna indietro di una parola, evitando di ripercorrere lo stesso
 //percorso.
 int amici(char **dizionario, char *parola, int *flag, int diz, char* fine)
 {

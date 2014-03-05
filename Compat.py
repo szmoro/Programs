@@ -46,7 +46,13 @@ def chplusminus(s1,s2):
     #return chdiff(s3,s4)    
     
 def test(s1,s2):
-    if anagr(s1,s2): return 1
-    if chdiff(s1,s2): return 1
-    if chplusminus(s1,s2): return 1
-    return 0
+    l1=len(s1)
+    l2=len(s2)
+    if l1 == l2:
+        
+        if anagr(s1,s2): return 1
+        if chdiff(s1,s2): return 1
+    elif abs(l1-l2) < 1:
+        if chplusminus(s1,s2): return 1
+    else:
+        return 0
